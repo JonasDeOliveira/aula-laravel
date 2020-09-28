@@ -94,6 +94,19 @@
                     <a href="https://vapor.laravel.com">Vapor</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
+                <h2>Teste com rotas:</h2>
+                <form action="/contato" method="post">
+                    @csrf
+                    <input type="text" name="nome" placeholder="Nome / POST">
+                    <button>Enviar</button>
+                </form>
+
+                <form action="/contato" method="post">
+                    @csrf
+                    <input type="hidden" name="_method" value="put">
+                    <input type="text" name="nome" placeholder="Nome / PUT">
+                    <button>Enviar</button>
+                </form>
             </div>
         </div>
     </body>
