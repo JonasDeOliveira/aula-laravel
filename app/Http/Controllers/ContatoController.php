@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Contato;
 use Illuminate\Http\Request;
 
 class ContatoController extends Controller
 {
     public function index()
     {
-        $contatos = [
-            (object)['nome' => 'Maria', 'tel' => '3334555666'],
-            (object)['nome' => 'Pedro', 'tel' => '7219371289']
-        ];
-
+        $contato = new Contato();
+        $contatos = $contato->listar();
         return view('contato.index', compact('contatos'));
     }
 
