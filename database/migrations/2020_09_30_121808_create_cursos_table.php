@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContatosTable extends Migration
+class CreateCursosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateContatosTable extends Migration
      */
     public function up()
     {
-        Schema::create('contatos', function (Blueprint $table) {
+        Schema::create('cursos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->string('nome');
-            $table->string('telefone');
-            $table->string('endereco');
-            $table->string('foto');
+            $table->string('titulo');
+            $table->string('descricao');
+            $table->string('imagem');
+            $table->decimal('valor', 5,2);
+            $table->enum('publicado', ['sim', 'nao'])->default('nao');
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -32,6 +31,6 @@ class CreateContatosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contatos');
+        Schema::dropIfExists('cursos');
     }
 }

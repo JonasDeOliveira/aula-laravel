@@ -13,4 +13,11 @@ class Contato extends Model
             (object)['nome' => 'Pedro', 'tel' => '7219371289']
         ];
     }
+
+    public function users()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+
 }
