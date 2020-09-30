@@ -10,7 +10,8 @@ class CursoController extends Controller
 {
     public function index()
     {
-        return view('admin.cursos.index');
+        $cursos = Curso::all();
+        return view('admin.cursos.index', compact('cursos'));
     }
 
     public function adicionar()
