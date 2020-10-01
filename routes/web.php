@@ -16,4 +16,8 @@ Route::get('/admin/cursos/adicionar', 'Admin\CursoController@adicionar')
     ->name('admin.cursos.adicionar');
 Route::post('/admin/cursos/salvar', 'Admin\CursoController@salvar')
     ->name('admin.cursos.salvar');
+Route::get('admin/cursos/editar/{id}', 'Admin\CursoController@editar')
+    ->name('admin.cursos.editar');
+Route::put('admin/cursos/atualizar/{id}', 'Admin\CursoController@atualizar')
+    ->name('admin.cursos.atualizar');
 

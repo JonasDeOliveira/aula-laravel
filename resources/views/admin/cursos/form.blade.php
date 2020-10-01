@@ -1,14 +1,17 @@
 <div class="form-group">
     <label for="titulo">Título</label>
-    <input type="text" class="form-control" id="titulo" name="titulo">
+    <input type="text" class="form-control" id="titulo" name="titulo"
+           value="{{$curso->titulo ?? ''}}">
 </div>
 <div class="form-group">
     <label for="descricao">Descrição</label>
-    <input type="text" class="form-control" id="descricao" name="descricao">
+    <input type="text" class="form-control" id="descricao" name="descricao"
+           value="{{$curso->descricao ?? ''}}">
 </div>
 <div class="form-group">
     <label for="valor">Valor</label>
-    <input type="text" class="form-control" id="valor" name="valor">
+    <input type="text" class="form-control" id="valor" name="valor"
+           value="{{$curso->valor ?? ''}}">
 </div>
 <div class="form-group">
     <label for="imagem">Imagem</label>

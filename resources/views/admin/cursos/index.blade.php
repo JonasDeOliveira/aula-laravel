@@ -31,7 +31,8 @@
                             <td>{{ $curso->imagem }}</td>
                             <td>{{ $curso->publicado }}</td>
                             <td>
-                                <a class="btn btn-primary">Editar</a>
+                                <a class="btn btn-primary"
+                                    href="{{ route('admin.cursos.editar', $curso->id) }}">Editar</a>
                                 <a class="btn btn-danger">Deletar</a>
                             </td>
                         </tr>

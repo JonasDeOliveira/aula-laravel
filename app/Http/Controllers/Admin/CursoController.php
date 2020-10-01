@@ -32,4 +32,25 @@ class CursoController extends Controller
 
           return redirect()->route('admin.cursos');
     }
+
+    public function editar($id)
+    {
+        $curso = Curso::find($id);
+
+        return view('admin.cursos.editar', compact('curso'));
+    }
+
+    public function atualizar(Request $req, $id)
+    {
+        $curso = $req->all();
+        Curso::find($id)->update($curso);
+
+        $req->session()
+            ->flash(
+                'mensagem',
+                'Curso atualizado com sucesso'
+            );
+
+        return redirect()->route('admin.cursos');
+    }
 }
