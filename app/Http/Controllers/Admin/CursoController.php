@@ -27,7 +27,7 @@ class CursoController extends Controller
           $req->session()
               ->flash(
                   'mensagem',
-                  'Curso adicionado com sucesso'
+                  "Curso de $req->titulo adicionado com sucesso"
               );
 
           return redirect()->route('admin.cursos');
@@ -42,15 +42,32 @@ class CursoController extends Controller
 
     public function atualizar(Request $req, $id)
     {
-        $curso = $req->all();
-        Curso::find($id)->update($curso);
+        $requisicao = $req->all();
+        $curso = Curso::find($id);
+        $curso->update($requisicao);
 
         $req->session()
             ->flash(
                 'mensagem',
-                'Curso atualizado com sucesso'
+                "Curso de $curso->titulo atualizado com sucesso"
             );
 
         return redirect()->route('admin.cursos');
     }
+
+    public function deletar(Request $req, $id)
+    {
+        $curso = Curso::find($id);
+        $curso->delete();
+
+        $req->session()
+            ->flash(
+                'mensagem',
+                "Curso de $curso->titulo removido com sucesso"
+            );
+
+        return redirect()->route('admin.cursos');
+    }
+
+
 }

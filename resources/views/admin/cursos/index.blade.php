@@ -33,7 +33,12 @@
                             <td>
                                 <a class="btn btn-primary"
                                     href="{{ route('admin.cursos.editar', $curso->id) }}">Editar</a>
-                                <a class="btn btn-danger">Deletar</a>
+                                <form action="{{ route('admin.cursos.deletar', $curso->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Deletar</button>
+                                </form>
+
                             </td>
                         </tr>
                     @endforeach

@@ -20,4 +20,6 @@ Route::get('admin/cursos/editar/{id}', 'Admin\CursoController@editar')
     ->name('admin.cursos.editar');
 Route::put('admin/cursos/atualizar/{id}', 'Admin\CursoController@atualizar')
     ->name('admin.cursos.atualizar');
+Route::delete('/admin/cursos/deletar/{id}', 'Admin\CursoController@deletar')
+    ->name('admin.cursos.deletar');
 
