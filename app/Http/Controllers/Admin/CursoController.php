@@ -8,10 +8,11 @@ use Illuminate\Http\Request;
 
 class CursoController extends Controller
 {
-    public function index()
+    public function index(Request $req)
     {
         $cursos = Curso::all();
-        return view('admin.cursos.index', compact('cursos'));
+        $mensagem = $req->session()->get('mensagem');
+        return view('admin.cursos.index', compact('cursos', 'mensagem'));
     }
 
     public function adicionar()
@@ -22,6 +23,12 @@ class CursoController extends Controller
     public function salvar(Request $req)
     {
           Curso::create($req->all());
+
+          $req->session()
+              ->flash(
+                  'mensagem',
+                  'Curso adicionado com sucesso'
+              );
 
           return redirect()->route('admin.cursos');
     }
