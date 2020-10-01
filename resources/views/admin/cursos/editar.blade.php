@@ -7,7 +7,8 @@
     <div class="container">
         <h3>Editar Curso</h3>
         <div class="row">
-            <form action="{{ route('admin.cursos.atualizar', $curso->id) }}" method="post">
+            <form action="{{ route('admin.cursos.atualizar', $curso->id) }}" method="post"
+                  enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="_method" value="put">
                 @include('admin.cursos.form')

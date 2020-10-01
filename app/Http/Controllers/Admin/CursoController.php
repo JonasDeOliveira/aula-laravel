@@ -22,15 +22,21 @@ class CursoController extends Controller
 
     public function salvar(Request $req)
     {
-          Curso::create($req->all());
+        $curso = $req->all();
 
-          $req->session()
-              ->flash(
-                  'mensagem',
-                  "Curso de $req->titulo adicionado com sucesso"
-              );
+        if ($req->hasFile('imagem')) {
+            $curso['imagem'] = $this->tratarImagem($req, $curso);
+        }
 
-          return redirect()->route('admin.cursos');
+        Curso::create($curso);
+
+        $req->session()
+          ->flash(
+              'mensagem',
+              "Curso de $req->titulo adicionado com sucesso"
+          );
+
+        return redirect()->route('admin.cursos');
     }
 
     public function editar($id)
@@ -43,6 +49,11 @@ class CursoController extends Controller
     public function atualizar(Request $req, $id)
     {
         $requisicao = $req->all();
+
+        if ($req->hasFile('imagem')) {
+            $requisicao['imagem'] = $this->tratarImagem($req, $requisicao);
+        }
+
         $curso = Curso::find($id);
         $curso->update($requisicao);
 
@@ -67,6 +78,18 @@ class CursoController extends Controller
             );
 
         return redirect()->route('admin.cursos');
+    }
+
+    public function tratarImagem(Request $req, $curso)
+    {
+        $imagem = $req->file('imagem');
+        $num = rand(1111, 9999);
+        $dir = 'img/cursos/';
+        $ext = $imagem->guessClientExtension();
+        $nomeImagem = 'imagem_' . $num . '.' . $ext;
+        $imagem->move($dir, $nomeImagem);
+
+        return $dir . $nomeImagem;
     }
 
 

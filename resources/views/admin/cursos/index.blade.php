@@ -28,7 +28,9 @@
                             <td>{{ $curso->id }}</td>
                             <td>{{ $curso->titulo }}</td>
                             <td>{{ $curso->descricao }}</td>
-                            <td>{{ $curso->imagem }}</td>
+                            <td>
+                                <img width="70" src="{{asset($curso->imagem)}}">
+                            </td>
                             <td>{{ $curso->publicado }}</td>
                             <td>
                                 <a class="btn btn-primary"
