@@ -24,6 +24,10 @@ class CursoController extends Controller
     {
         $curso = $req->all();
 
+        if (isset($curso['publicado'])) {
+            $curso['publicado'] = 'sim';
+        }
+
         if ($req->hasFile('imagem')) {
             $curso['imagem'] = $this->tratarImagem($req, $curso);
         }
@@ -48,19 +52,25 @@ class CursoController extends Controller
 
     public function atualizar(Request $req, $id)
     {
-        $requisicao = $req->all();
+        $curso = $req->all();
 
-        if ($req->hasFile('imagem')) {
-            $requisicao['imagem'] = $this->tratarImagem($req, $requisicao);
+        if (isset($curso['publicado'])) {
+            $curso['publicado'] = 'sim';
+        } else {
+            $curso['publicado'] = 'nao';
         }
 
-        $curso = Curso::find($id);
-        $curso->update($requisicao);
+        if ($req->hasFile('imagem')) {
+            $curso['imagem'] = $this->tratarImagem($req, $curso);
+        }
+
+        $cursoSelecionado = Curso::find($id);
+        $cursoSelecionado->update($curso);
 
         $req->session()
             ->flash(
                 'mensagem',
-                "Curso de $curso->titulo atualizado com sucesso"
+                "Curso de $cursoSelecionado->titulo atualizado com sucesso"
             );
 
         return redirect()->route('admin.cursos');
