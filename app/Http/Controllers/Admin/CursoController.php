@@ -29,7 +29,7 @@ class CursoController extends Controller
         }
 
         if ($req->hasFile('imagem')) {
-            $curso['imagem'] = $this->tratarImagem($req, $curso);
+            $curso['imagem'] = $this->tratarImagem($req);
         }
 
         Curso::create($curso);
@@ -61,7 +61,7 @@ class CursoController extends Controller
         }
 
         if ($req->hasFile('imagem')) {
-            $curso['imagem'] = $this->tratarImagem($req, $curso);
+            $curso['imagem'] = $this->tratarImagem($req);
         }
 
         $cursoSelecionado = Curso::find($id);
@@ -90,7 +90,7 @@ class CursoController extends Controller
         return redirect()->route('admin.cursos');
     }
 
-    public function tratarImagem(Request $req, $curso)
+    public function tratarImagem(Request $req)
     {
         $imagem = $req->file('imagem');
         $num = rand(1111, 9999);
