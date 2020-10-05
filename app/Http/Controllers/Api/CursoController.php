@@ -10,6 +10,12 @@ class CursoController extends Controller
 {
     public function listar()
     {
-        return response()->json(Curso::all(), 200);
+        $dados = Curso::all();
+
+        foreach ($dados as $dado) {
+            $dado['imagem'] = url($dado['imagem']);
+        }
+
+        return response()->json($dados, 200);
     }
 }
