@@ -17,5 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
+//rotas Curso
 Route::get('/listar', 'Api\CursoController@listar');
+Route::post('/salvar', 'Api\CursoController@salvar');
+Route::get('/buscar/{id}', 'Api\CursoController@buscar');
+Route::put('/atualizar/{id}', 'Api\CursoController@atualizar');
+Route::delete('/deletar/{id}', 'Api\CursoController@deletar');
